@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Customer Information</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th, td {
+			text-align: left;
+			padding: 8px;
+			border-bottom: 1px solid #ddd;
+		}
+
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<h1>Customer Information</h1>
+	<form method="POST">
+		<label for="column">Choose a column to display:</label>
+		<select id="column" name="column">
+			<option value="id">ID</option>
+			<option value="name">Name</option>
+			<option value="email">Email</option>
+			<option value="balance">Balance</option>
+		</select>
+		<button type="submit">Display</button>
+	</form>
+	<br>
+
+	<form method="POST">
+		<label for="column">Transfer to:</label>
+		<select id="column" name="column">
+			
+		</select>
+		<label for="column">Choose a column to display:</label>
+		<select id="column" name="column">
+			
+		</select>
+		<button type="submit">Display</button>
+	</form>
+
+	<?php
+		$servername = "localhost";
+		$username = "username";
+		$password = "password";
+		$dbname = "database";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+
+		// Set default column to display
+		$column = "id";
+
+		// Check if a column was selected
+		if (isset($_POST['column'])) {
+			$column = $_POST['column'];
+		}
+
+		// Retrieve data from database
+		$sql = "SELECT id, name, email, balance FROM customers";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			// Output table header
+			echo "<table><tr><th>ID</th><th>Name</th><th>Email</th><th>Balance</th></tr>";
+
+			// Output table rows
+			while($row = $result->fetch_assoc()) {
+				echo "<tr>";
+				echo "<td>" . $row['id'] . "</td>";
+				echo "<td>" . $row['name'] . "</td>";
+				echo "<td>" . $row['email'] . "</td>";
+				echo "<td>" . $row['balance'] . "</td>";
+				echo "</tr>";
+			}
+
+			// Output table footer
+			echo "</table>";
+		} else {
+			echo "0 results";
+		}
+
+		// Close connection
+		$conn->close();
+	?>
+</body>
+</html>

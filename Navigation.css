@@ -1,0 +1,55 @@
+/* Navigation bar styles */
+
+nav {
+	background-color: #333;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+}
+
+nav li {
+	margin: 0;
+	padding: 0;
+    font-size: 25px;
+}
+
+nav a {
+	display: block;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
+	text-decoration: none;
+}
+
+nav a:hover {
+	background-color: #555;
+}
+
+/* Main content and footer styles */
+
+main {
+	max-width: 800px;
+	margin: auto;
+	padding: 20px;
+}
+
+footer {
+	background-color: #333;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    color: #303030;
+  }
